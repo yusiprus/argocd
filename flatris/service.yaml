@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: service-flatris
+  labels:
+    app: flatris
+spec:
+  ports:
+    - name: port
+      port: 8080
+      protocol: TCP
+      targetPort: 3000
+  selector:
+    app: flatris

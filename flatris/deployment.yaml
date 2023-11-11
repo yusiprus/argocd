@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: flatris
+spec:
+  selector:
+    matchLabels:
+      app: flatris
+  replicas: 1
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: flatris
+    spec:
+      containers:
+        - name: flatris
+          image: localhost:32000/flatris:registry
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: port
+              containerPort: 3000
+          resources:
+            requests:
+              cpu: 100m
+              memory: 500Mi
