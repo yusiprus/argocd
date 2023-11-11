@@ -1,0 +1,18 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: ingress-flatris
+spec:
+  ingressClassName: nginx
+  rules:
+  - host: flatris.local
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service: 
+            name: service-flatris
+            port: 
+              number: 80
