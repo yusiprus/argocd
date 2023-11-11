@@ -1,3 +1,4 @@
+---
 apiVersion: extensions/v1beta1
  kind: Ingress
  metadata:
@@ -10,4 +11,4 @@ apiVersion: extensions/v1beta1
        - path: /
          backend:
            serviceName: service-demo-nginx
-           servicePort: 8090
+           servicePort: 80
