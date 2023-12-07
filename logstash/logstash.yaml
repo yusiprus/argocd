@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: logstash
+  labels:
+    component: logstash
+spec:
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      component: logstash
+  template:
+    metadata:
+      labels:
+        component: logstash
+    spec:
+      containers:
+        - name: logstash
+          image: logstash:7.16.3
+          ports:
+            - containerPort: 5044
+            - containerPort: 12201
+            - containerPort: 9600  
+          volumeMounts:
+            - name: logstash-config
+              mountPath: /usr/share/logstash/pipeline
+      volumes:
+        - name: logstash-config
+          configMap:
+            name: logstash
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: logstash-beats
+  labels:
+    component: logstash
+spec:
+  ports:
+  - protocol: TCP 
+    port: 5044
+  selector:
+    component: logstash
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: logstash
+  labels:
+    component: logstash
+spec:
+  ports:
+  - protocol: UDP
+    port: 12201
+  selector:
+    component: logstash
