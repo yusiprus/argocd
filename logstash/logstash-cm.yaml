@@ -16,6 +16,10 @@ data:
       }
 
       filter {
+            mutate {
+              rename => { "[host]" => "[host][name]" }
+              remove_field => [ "short_message" ]
+            }
             kv {
               field_split => ","
         }
