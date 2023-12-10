@@ -40,9 +40,7 @@ spec:
   ports:
   - protocol: UDP
     port: 12201
+  - protocol: TCP
+    port: 5044    
   selector:
     component: logstash
-  - protocol: TCP
-    port: 5044
-  selector:
-    component: logstash    
