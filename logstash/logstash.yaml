@@ -40,7 +40,9 @@ spec:
   ports:
   - protocol: UDP
     port: 12201
+    name: gelf  
   - protocol: TCP
-    port: 5044    
+    port: 5044
+    name: beats  
   selector:
     component: logstash
