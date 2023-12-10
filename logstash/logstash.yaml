@@ -33,19 +33,6 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: logstash-beats
-  labels:
-    component: logstash
-spec:
-  ports:
-  - protocol: TCP 
-    port: 5044
-  selector:
-    component: logstash
----
-apiVersion: v1
-kind: Service
-metadata:
   name: logstash
   labels:
     component: logstash
@@ -55,3 +42,7 @@ spec:
     port: 12201
   selector:
     component: logstash
+  - protocol: TCP
+    port: 5044
+  selector:
+    component: logstash    
