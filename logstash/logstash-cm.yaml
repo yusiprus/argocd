@@ -12,16 +12,17 @@ data:
       }
       gelf {
         port => "12201"
-        }
       }
+    }
 
       filter {
-            mutate {
-              rename => { "[host]" => "[host][name]" }
-              remove_field => [ "short_message" ]
-            }
-            kv {
-              field_split => ","
+        kv {
+          field_split => ","
+        }
+        mutate {
+          rename => { "[host]" => "[host][name]" }
+          remove_field => [ "short_message" ]
+          remove_field => [ "message" ]
         }
       }
 
